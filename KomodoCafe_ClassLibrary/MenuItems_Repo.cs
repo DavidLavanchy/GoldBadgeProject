@@ -27,9 +27,15 @@ namespace KomodoCafe_ClassLibrary
         {
             MenuItems menuItem = GetMenuItemByID(identificationNumber);
 
-            if(menuItem != null)
+            if (menuItem == null)
             {
-                _menuItemsList.Remove(menuItem);
+                return false;
+            }
+            int initialCount = _menuItemsList.Count();
+            _menuItemsList.Remove(menuItem);
+
+            if(initialCount > _menuItemsList.Count)
+            {
                 return true;
             }
             else
