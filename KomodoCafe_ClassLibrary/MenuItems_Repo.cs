@@ -8,12 +8,18 @@ namespace KomodoCafe_ClassLibrary
 {
     public class MenuItems_Repo
     {
-        List<MenuItems> _menuItemsList = new List<MenuItems>();
+        private readonly List<MenuItems> _menuItemsList = new List<MenuItems>();
 
         //create
-        public void CreateMenuItem(MenuItems menuItem)
+        public bool CreateMenuItem(MenuItems menuItem)
         {
+            if(menuItem is null)
+            {
+                return false;
+            }
             _menuItemsList.Add(menuItem);
+
+            return true;
         }
 
         //read

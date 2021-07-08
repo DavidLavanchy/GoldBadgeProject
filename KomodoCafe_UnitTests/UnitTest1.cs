@@ -18,13 +18,13 @@ namespace KomodoCafe_UnitTests
             _ingredients.Add("patty");
             MenuItems menuItem = new MenuItems(5, "bigMac", "Big Mac sandwich, fries, and a drink", _ingredients , 8.50m);
             MenuItems_Repo _repo = new MenuItems_Repo();
-
+            MenuItems item = null;
             //Act
             _repo.CreateMenuItem(menuItem);
             MenuItems newItem = _repo.GetMenuItemByID(5);
-
+            bool isTrue = _repo.CreateMenuItem(newItem);
             //Assert
-            Assert.IsNotNull(newItem);
+            Assert.IsTrue(isTrue);
         }
 
         [TestMethod]

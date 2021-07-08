@@ -12,12 +12,12 @@ namespace KomodoCafe_ConsoleApp
         private string dashes = "--------------------";
         private string halfDashes = "----------";
 
-        private MenuItems_Repo _menuItemsRepo = new MenuItems_Repo();
+        MenuItems_Repo _menuItemsRepo = new MenuItems_Repo();
 
         public void Run()
         {
 
-
+            SeedMenuItems();
             Menu();
         }
 
@@ -181,7 +181,7 @@ namespace KomodoCafe_ConsoleApp
                 $"Menu Item Ingredients:");DisplayEachIngredientFromMenuItem(menuItem);
             Console.WriteLine($"Menu Price: {menuItem.MealPrice}\n");
 
-            string input = Console.ReadLine();
+            string input = Console.ReadLine().ToLower(); ;
 
             switch (input)
             {
@@ -190,8 +190,7 @@ namespace KomodoCafe_ConsoleApp
                     Console.WriteLine("Menu Item Successfully Added!");
                     break;
                 case "n":
-                    Console.WriteLine("You will now be returned to the main menu. Press any keyt to continue...");
-                    Console.ReadKey();
+                    Console.WriteLine("You will now be returned to the main menu. Press any key to continue...");      
                     Menu();
                     break;
                 default:
@@ -205,12 +204,74 @@ namespace KomodoCafe_ConsoleApp
 
         private void DeleteAMenuItem()
         {
-            
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} Delete A Menu Item {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          Please Enter The Meal Number of the Menu Item you wish to delete:\n" +
+                $"{dashes}{dashes}\n");
+            int mealNumber = int.Parse(Console.ReadLine());
+            MenuItems menuItem = _menuItemsRepo.GetMenuItemByID(mealNumber);
+
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} Delete A Menu Item {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          Are you sure you want to delete this Menu Item? (y/n):\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n" +
+                $"Menu Item Number: {menuItem.MealNumber}\n" +
+                $"Menu Item Name: {menuItem.MealName}\n" +
+                $"Menu Item Description: {menuItem.MealDescription}\n" +
+                $"Menu Item Ingredients:"); DisplayEachIngredientFromMenuItem(menuItem);
+            Console.WriteLine($"Menu Price: {menuItem.MealPrice}\n");
+
+            string userInput = Console.ReadLine().ToLower();
+
+            switch (userInput)
+            {
+                case "y":
+                    _menuItemsRepo.DeleteItemFromList(mealNumber);
+                    Console.WriteLine("Menu Item Successfully Deleted!");
+                    break;
+                case "n":
+                    Console.WriteLine("You will now be returned to the main menu. Press any key to continue...");
+                    Menu();
+                    break;
+                default:
+                    Console.WriteLine("Please enter either 'y' or 'n'. Enter 'y' if you would like to go forward with adding this new Menu Item.\n" +
+                        "" +
+                        "Enter 'n' if you would like to abandon this Menu Item.");
+                    break;
+            }
+
         }
 
         private void ViewAMenuItem()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} All Menu Items {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          Below is each item currently on the menu:\n" +
+                $"{dashes}{dashes}\n");
+
+            foreach(var menuItem in _menuItemsRepo.ReadMenuItems())
+            {
+                Console.WriteLine($"\n" +
+                $"Menu Item Number: {menuItem.MealNumber}\n" +
+                $"Menu Item Name: {menuItem.MealName}\n" +
+                $"Menu Item Description: {menuItem.MealDescription}\n" +
+                $"Menu Item Ingredients:"); DisplayEachIngredientFromMenuItem(menuItem);
+                Console.WriteLine($"Menu Price: {menuItem.MealPrice}\n");
+            }
+            Console.WriteLine("");
+            Console.WriteLine("Press any key to return to the main menu..");
+
         }
 
         private void DisplayEachIngredientFromMenuItem(MenuItems menuItem)
@@ -219,6 +280,24 @@ namespace KomodoCafe_ConsoleApp
             {
                 Console.WriteLine($"{item}");
             }
+        }
+
+        public void SeedMenuItems()
+        {
+            List<string> ingredients1 = new List<string>{ "patty", "bun", "secret sauce", "tomato", "lettuce", "mayonnaise", "ketchup" };
+            List<string> ingredients2 = new List<string> { "bun", "chicken fillet", "mayonnaise" };
+            List<string> ingredients3 = new List<string> { "fries", "salt", "canola oil" };
+            List<string> ingredients4 = new List<string> { "vanilla icecream", "chocolate syrup", "hot fudge", "cherry" };
+
+            MenuItems menuItem1 = new MenuItems(1, "BigMac", "Large sandwich with secret sauce!", ingredients1, 8.99m);
+            MenuItems menuItem2 = new MenuItems(2, "Chicken Sandwich", "Fresh chicken sandwich.", ingredients2, 7.50m);
+            MenuItems menuItem3 = new MenuItems(3, "French Fries", "Salty French Fries as a perfect side!", ingredients3, 2.50m);
+            MenuItems menuItem4 = new MenuItems(4, "IceCream Sundae", "Warm, sweet chocolate hot fudge sundae.", ingredients4, 3.00m);
+
+            _menuItemsRepo.CreateMenuItem(menuItem1);
+            _menuItemsRepo.CreateMenuItem(menuItem2);
+            _menuItemsRepo.CreateMenuItem(menuItem3);
+            _menuItemsRepo.CreateMenuItem(menuItem4);
         }
     }
 }
