@@ -1,0 +1,6 @@
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_POCOs\obj\Debug\KomodoClaims_POCOs.csproj.AssemblyReference.cache
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_POCOs\obj\Debug\KomodoClaims_POCOs.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_POCOs\bin\Debug\KomodoClaims_POCOs.dll
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_POCOs\bin\Debug\KomodoClaims_POCOs.pdb
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_POCOs\obj\Debug\KomodoClaims_POCOs.dll
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_POCOs\obj\Debug\KomodoClaims_POCOs.pdb
