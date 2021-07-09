@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace KomodoClaims_Console
 {
-    class Program
+    public class ProgramUI
     {
-        static void Main(string[] args)
+        public void Run()
         {
-            ProgramUI program = new ProgramUI();
-            program.Run();
+            Menu();
+        }
+
+        private void Menu()
+        {
+
         }
         
     }
