@@ -5,3 +5,6 @@ C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_Console\ob
 C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_Console\obj\Debug\KomodoClaims_Console.csproj.CoreCompileInputs.cache
 C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_Console\obj\Debug\KomodoClaims_Console.exe
 C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_Console\obj\Debug\KomodoClaims_Console.pdb
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_Console\bin\Debug\KomodoClaims_POCOs.dll
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_Console\bin\Debug\KomodoClaims_POCOs.pdb
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoClaims_Console\obj\Debug\KomodoClaims_Console.csproj.CopyComplete
