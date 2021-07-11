@@ -27,6 +27,7 @@ namespace KomodoCafe_ConsoleApp
 
             while (isTrue)
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"    {halfDashes} Komodo Cafe {halfDashes}");
                 Console.ResetColor();
@@ -209,11 +210,23 @@ namespace KomodoCafe_ConsoleApp
             Console.WriteLine($"    {halfDashes} Delete A Menu Item {halfDashes}");
             Console.ResetColor();
             Console.WriteLine("");
-            Console.WriteLine("          Please Enter The Meal Number of the Menu Item you wish to delete:\n" +
-                $"{dashes}{dashes}\n");
+            Console.WriteLine("          Please Enter The Meal Number of the Menu Item you wish to delete:\n");
+            foreach(var menuItem1 in _menuItemsRepo.ReadMenuItems())
+            {
+                Console.WriteLine($"Menu Item ID: {menuItem1.MealNumber}\n" +
+                    $"Menu Item Name: {menuItem1.MealName}");
+                Console.WriteLine("");
+            }
+
+            Console.WriteLine($"{dashes}{dashes}\n");
+            Console.WriteLine("If you wish to return to the main menu enter '0'.");
             int mealNumber = int.Parse(Console.ReadLine());
             MenuItems menuItem = _menuItemsRepo.GetMenuItemByID(mealNumber);
 
+            if(mealNumber == 0)
+            {
+                Menu();
+            }
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -228,24 +241,31 @@ namespace KomodoCafe_ConsoleApp
                 $"Menu Item Description: {menuItem.MealDescription}\n" +
                 $"Menu Item Ingredients:"); DisplayEachIngredientFromMenuItem(menuItem);
             Console.WriteLine($"Menu Price: {menuItem.MealPrice}\n");
+            bool isTrue = true;
 
-            string userInput = Console.ReadLine().ToLower();
-
-            switch (userInput)
+            while (isTrue)
             {
-                case "y":
-                    _menuItemsRepo.DeleteItemFromList(mealNumber);
-                    Console.WriteLine("Menu Item Successfully Deleted!");
-                    break;
-                case "n":
-                    Console.WriteLine("You will now be returned to the main menu. Press any key to continue...");
-                    Menu();
-                    break;
-                default:
-                    Console.WriteLine("Please enter either 'y' or 'n'. Enter 'y' if you would like to go forward with adding this new Menu Item.\n" +
-                        "" +
-                        "Enter 'n' if you would like to abandon this Menu Item.");
-                    break;
+                string userInput = Console.ReadLine().ToLower();
+
+                switch (userInput)
+                {
+                    case "y":
+                        _menuItemsRepo.DeleteItemFromList(mealNumber);
+                        Console.WriteLine("Menu Item Successfully Deleted!");
+                        isTrue = false;
+                        break;
+                    case "n":
+                        Console.WriteLine("You will now be returned to the main menu. Press any key to continue...");
+                        Console.ReadKey();
+                        Menu();
+                        break;
+                    default:
+                        Console.WriteLine("Please enter either 'y' or 'n'. Enter 'y' if you would like to go forward with adding this new Menu Item.\n" +
+                            "" +
+                            "Enter 'n' if you would like to abandon this Menu Item.");
+                        isTrue = true;
+                        break;
+                }
             }
 
         }
@@ -270,7 +290,7 @@ namespace KomodoCafe_ConsoleApp
                 Console.WriteLine($"Menu Price: {menuItem.MealPrice}\n");
             }
             Console.WriteLine("");
-            Console.WriteLine("Press any key to return to the main menu..");
+            
 
         }
 
