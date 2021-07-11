@@ -96,7 +96,53 @@ namespace KomodoClaims_Console
 
         private void AddressAClaim()
         {
-            throw new NotImplementedException();
+            bool isTrue = true;
+
+                while (isTrue)
+                {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"    {halfDashes} *Komodo Claims* {halfDashes}");
+                Console.ResetColor();
+                Console.WriteLine("");
+                Console.WriteLine("          Address A Claim:\n" +
+                    $"{dashes}{dashes}\n" +
+                    $"\n");
+
+                Claim claim = _claimRepo.ViewAllClaims().Peek();
+                  
+                        Console.WriteLine($"Claim ID: {claim.ClaimID}\n" +
+                            $"Claim Type: {claim.ClaimType}\n" +
+                            $"Claim Description: {claim.ClaimDescription}\n" +
+                            $"Claim Amount: {claim.ClaimAmount}\n" +
+                            $"Incident Date: {claim.IncidentDate}\n" +
+                            $"Claim Date: {claim.ClaimDate}\n" +
+                            $"Valid: {claim.IsValid}\n ");
+
+                        Console.WriteLine("Would you like to deal with this claim? (y/n)");
+                        string input = Console.ReadLine().ToLower();
+
+                        switch (input)
+                        {
+                            case "y":          
+                                _claimRepo.ViewAllClaims().Dequeue();
+                                break;
+                            case "n":
+                                Console.WriteLine("You will now be returned to the main menu.");
+                                Console.Clear();
+                                Menu();
+                                break;
+                            default:
+                                Console.WriteLine("Please enter a valid menu option:");
+                                Console.WriteLine("");
+                                Console.WriteLine("Press 'y' if you would like to deal with the next claim.\n" +
+                                    "Press 'n' if you would like to return to the main menu");
+                                break;
+                        }
+
+                    
+                }
+
         }
 
         private void EnterANewClaim()
