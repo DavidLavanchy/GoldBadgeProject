@@ -87,7 +87,10 @@ namespace KomodoClaims_Console
                 Console.WriteLine("");
                 Console.WriteLine($"{dashes}{dashes}");
             }
-
+            Console.WriteLine("");
+            Console.WriteLine("Press any key to return to the main menu..");
+            Console.ReadKey();
+            Console.Clear();
 
         }
 
@@ -103,24 +106,11 @@ namespace KomodoClaims_Console
 
         private void SeedClaims()
         {
-            DateTime incidentDate1 = new DateTime(04 / 04 / 2021);
-            DateTime claimDate1 = new DateTime(04 / 25 / 2021);
 
-            DateTime incidentDate2 = new DateTime(01 / 15 / 2019);
-            DateTime claimDate2 = new DateTime(02 / 03 / 2019);
-
-            DateTime incidentDate3 = new DateTime(08 / 17 / 2020);
-            DateTime claimDate3 = new DateTime(09 / 04 / 2020);
-
-            DateTime incidentDate4 = new DateTime(06 / 22/ 2018);
-            DateTime claimDate4 = new DateTime(09 / 04 / 2018);
-
-
-
-            Claim claim1 = new Claim(1, Claim.TypeOfClaim.Theft, "Theft of lawn equipment", 1200.00m, incidentDate1, claimDate1);
-            Claim claim2 = new Claim(2, Claim.TypeOfClaim.Car, "Car accident- policyholder not at fault", 5000.00m, incidentDate2, claimDate2);
-            Claim claim3 = new Claim(3, Claim.TypeOfClaim.Home, "Tornado damage to roof and garage", 15000.00m, incidentDate3, claimDate3);
-            Claim claim4 = new Claim(4, Claim.TypeOfClaim.Car, "Policyholder was victim of hit and run", 10000.00m, incidentDate4, claimDate4);
+            Claim claim1 = new Claim(1, Claim.TypeOfClaim.Theft, "Theft of lawn equipment", 1200.00m, DateTime.Parse("04/04/2021"), DateTime.Parse("04/25/2021"));
+            Claim claim2 = new Claim(2, Claim.TypeOfClaim.Car, "Car accident- policyholder not at fault", 5000.00m, DateTime.Parse("01/15/2019"), DateTime.Parse("02/03/2019"));
+            Claim claim3 = new Claim(3, Claim.TypeOfClaim.Home, "Tornado damage to roof and garage", 15000.00m, DateTime.Parse("08/17/2020"), DateTime.Parse("09/04/2020"));
+            Claim claim4 = new Claim(4, Claim.TypeOfClaim.Car, "Policyholder was victim of hit and run", 10000.00m, DateTime.Parse("06/22/2018"), DateTime.Parse("09/04/2018"));
 
             _claimRepo.CreateClaim(claim1);
             _claimRepo.CreateClaim(claim2);
