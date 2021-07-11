@@ -25,6 +25,7 @@ namespace KomodoClaims_Console
 
             while (isTrue)
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"  {halfDashes} *Komodo Claims* {halfDashes}");
                 Console.ResetColor();
@@ -129,6 +130,7 @@ namespace KomodoClaims_Console
                                 break;
                             case "n":
                                 Console.WriteLine("You will now be returned to the main menu.");
+                                Console.ReadKey();
                                 Console.Clear();
                                 Menu();
                                 break;
@@ -139,15 +141,197 @@ namespace KomodoClaims_Console
                                     "Press 'n' if you would like to return to the main menu");
                                 break;
                         }
-
-                    
                 }
-
         }
 
         private void EnterANewClaim()
         {
-            throw new NotImplementedException();
+            Claim newClaim = new Claim();
+            bool isTrue = true;
+
+            //Asking for Claim ID
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} *Komodo Claims* {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("           Create A Claim:\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the Identification Number of the Claim you are creating:");
+
+            int idNumber = Int32.Parse(Console.ReadLine());
+            newClaim.ClaimID = idNumber;
+
+            //Asking for Claim Type
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} *Komodo Claims* {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("           Create A Claim:\n" +
+                $"Claim ID: {newClaim.ClaimID}\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the corresponding number to the Type of the Claim you are creating:\n" +
+                "1: Theft\n" +
+                "2: Car\n" +
+                "3: Home\n");
+
+            while (isTrue)
+            {
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        newClaim.ClaimType = Claim.TypeOfClaim.Theft;
+                        isTrue = false;
+                        break;
+                    case "2":
+                        newClaim.ClaimType = Claim.TypeOfClaim.Car;
+                        isTrue = false;
+                        break;
+                    case "3":
+                        newClaim.ClaimType = Claim.TypeOfClaim.Home;
+                        isTrue = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please Enter a valid claim type...");
+                        isTrue = true;
+                        break;
+                }
+            }
+
+            //Asking for Claim Description
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} *Komodo Claims* {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("           Create A Claim:\n" +
+                $"Claim ID: {newClaim.ClaimID}\n" +
+                $"Claim Type: {newClaim.ClaimType}\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter a Description for the Claim that you are creating:\n");
+
+            string description = Console.ReadLine();
+            newClaim.ClaimDescription = description;
+
+            //Asking for Claim Amount
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} *Komodo Claims* {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("           Create A Claim:\n" +
+                $"Claim ID: {newClaim.ClaimID}\n" +
+                $"Claim Type: {newClaim.ClaimType}\n" +
+                $"Claim Description: {newClaim.ClaimDescription}\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter an Amount for the Claim that you are creating:\n");
+
+            decimal claimAmount = Convert.ToDecimal(Console.ReadLine());
+            newClaim.ClaimAmount = claimAmount;
+
+            //Asking for Incident Date
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} *Komodo Claims* {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("           Create A Claim:\n" +
+                $"Claim ID: {newClaim.ClaimID}\n" +
+                $"Claim Type: {newClaim.ClaimType}\n" +
+                $"Claim Description: {newClaim.ClaimDescription}\n" +
+                $"Claim Amount: {newClaim.ClaimAmount}\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the date of the incident for the Claim that you are creating (00/00/0000):\n");
+
+            DateTime incidentDate = DateTime.Parse(Console.ReadLine());
+            newClaim.IncidentDate = incidentDate;
+
+            //Asking for Claim Date
+            //Asking for Incident Date
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} *Komodo Claims* {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("           Create A Claim:\n" +
+                $"Claim ID: {newClaim.ClaimID}\n" +
+                $"Claim Type: {newClaim.ClaimType}\n" +
+                $"Claim Description: {newClaim.ClaimDescription}\n" +
+                $"Claim Amount: {newClaim.ClaimAmount}\n" +
+                $"Incident Date: {newClaim.IncidentDate}\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the date of the incident for the Claim that you are creating (00/00/0000):\n");
+
+            DateTime claimDate = DateTime.Parse(Console.ReadLine());
+            newClaim.ClaimDate = claimDate;
+
+            //Displaying claim and whetheror not it is valid and asking the user if they would like to go forward with adding this claim
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} *Komodo Claims* {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("           Create A Claim:\n" +
+                $"Claim ID: {newClaim.ClaimID}\n" +
+                $"Claim Type: {newClaim.ClaimType}\n" +
+                $"Claim Description: {newClaim.ClaimDescription}\n" +
+                $"Claim Amount: {newClaim.ClaimAmount}\n" +
+                $"Incident Date: {newClaim.IncidentDate}\n" +
+                $"Claim Date: {newClaim.ClaimDate}\n" +
+                $"Valid: {newClaim.IsValid}\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Are you sure you would like to create this new claim? (y/n)\n");
+
+            bool isTrue2 = true;
+
+            while (isTrue2)
+            {
+                string inputToAdd = Console.ReadLine().ToLower();
+
+                switch (inputToAdd)
+                {
+                    case "y":
+                        _claimRepo.CreateClaim(newClaim);
+                        Console.WriteLine("Claim Successfully Created! Press any key to continue...");
+                        Console.ReadKey();
+                        isTrue2 = false;
+                        break;
+                    case "n":
+                        Console.WriteLine("Claim was discarded. You will now be returned to the main menu. Press any key to continue...");
+                        Console.ReadKey();
+                        isTrue2 = false;
+                        Menu();
+                        break;
+                    default:
+                        Console.WriteLine("Please enter either 'y' or 'n'. Enter 'y' if you would like to go forward with creating this claim. Enter 'n' if you would like to abandon this Claim.\n");
+                        break;
+                }
+            }
+
         }
 
         private void SeedClaims()
