@@ -51,6 +51,21 @@ namespace KomodoBadges_UnitTests
 
             Assert.IsNotNull(returnedDictionary);
         }
+
+        [TestMethod]
+        public void ReadOneBadge_ShouldReturnNotNull()
+        {
+            Badges badge = Arrange();
+            _badgeRepo.CreateABadge(badge);
+
+            //Act
+            List<string> doors = _badgeRepo.ReadOneBadge(5);
+
+            //Assert
+            Assert.IsNotNull(doors);
+
+        }
+
         [TestMethod]
         public void UpdateDoor_ShouldReturnTrue()
         {

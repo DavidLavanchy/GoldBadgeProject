@@ -14,7 +14,7 @@ namespace KomodoBadges_POCOs
         //create
         public bool CreateABadge(Badges badge)
         {
-            //This method creates and instance of a new badge in the dictionary and the list of badges
+            //This method creates an instance of a new badge in the dictionary and the list of badges
             //The list of badges is primarily just to associate the ID's and Doors to a Name
 
             int badgeID = badge.BadgeID;
@@ -79,7 +79,7 @@ namespace KomodoBadges_POCOs
         }
 
         //delete
-        public bool DeleteDoorsOnExistingBadge(int badgeID, string doorsToBeDeleted)
+        public bool DeleteDoorsOnExistingBadge(int badgeID, string doorToBeDeleted)
         {
             foreach(int badge in _badgeDictionary.Keys)
             {
@@ -89,7 +89,7 @@ namespace KomodoBadges_POCOs
                 }
             }
 
-            _badgeDictionary[badgeID].Remove(doorsToBeDeleted);
+            _badgeDictionary[badgeID].Remove(doorToBeDeleted);
             return true; 
         }
 
