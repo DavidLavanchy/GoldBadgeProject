@@ -47,6 +47,20 @@ namespace KomodoBadges_POCOs
             return _badgeDictionary;
         }
 
+        //read one badge
+        public List<string> ReadOneBadge(int badgeID)
+        {
+            foreach (int badge in _badgeDictionary.Keys)
+            {
+                if (badgeID == badge)
+                {
+                    List<string> doorsOnBadge = _badgeDictionary[badgeID];
+                    return doorsOnBadge;
+                }
+            }
+            return null;
+        }
+
         //update
         public bool UpdateDoorsOnExistingBadge(int badgeID, string updatedDoorAccess)
         {
@@ -79,17 +93,20 @@ namespace KomodoBadges_POCOs
             return true; 
         }
 
-        //helper method
-        public KeyValuePair<int, List<string>> GetBadgeByBadgeID(int badgeID)
+        public bool DeleteAllDoorsOnExistingBadge(int badgeID)
         {
-            foreach(var keyValuePair in _badgeDictionary)
+
+            foreach (int badge in _badgeDictionary.Keys)
             {
-                if (keyValuePair.Key == badgeID)
+                if (badge == badgeID)
                 {
-                    return keyValuePair;
-                }
+                    List<string> doorsOnBadge = _badgeDictionary[badgeID];
+                    doorsOnBadge.Clear();
+                } 
             }
-            return default;
+
+            return false;
+
         }
 
         //get name of badge by badge ID
