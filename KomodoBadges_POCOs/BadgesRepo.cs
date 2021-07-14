@@ -102,6 +102,8 @@ namespace KomodoBadges_POCOs
                 {
                     List<string> doorsOnBadge = _badgeDictionary[badgeID];
                     doorsOnBadge.Clear();
+
+                    return true;
                 } 
             }
 

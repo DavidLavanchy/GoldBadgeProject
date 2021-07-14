@@ -69,7 +69,12 @@ namespace KomodoBadges_UnitTests
         [TestMethod]
         public void UpdateDoor_ShouldReturnTrue()
         {
+            Badges badge = Arrange();
+            _badgeRepo.CreateABadge(badge);
 
+            bool isTrue = _badgeRepo.UpdateDoorsOnExistingBadge(5, "A6");
+
+            Assert.IsTrue(isTrue);
 
         }
 
@@ -101,6 +106,29 @@ namespace KomodoBadges_UnitTests
             //Assert
             Assert.IsFalse(deleteDoor);
 
+        }
+
+        [TestMethod]
+        public void DeleteAllDoors()
+        {
+            Badges badge = Arrange();
+            _badgeRepo.CreateABadge(badge);
+
+           bool isTrue = _badgeRepo.DeleteAllDoorsOnExistingBadge(5);
+
+            Assert.IsTrue(isTrue);
+
+        }
+
+        [TestMethod]
+        public void GetDoorName_ShouldReturnNotNull()
+        {
+            Badges badge = Arrange();
+            _badgeRepo.CreateABadge(badge);
+
+            string badgeName = _badgeRepo.GetBadgeName(5);
+
+            Assert.AreEqual("Developers", badgeName);
         }
 
 
