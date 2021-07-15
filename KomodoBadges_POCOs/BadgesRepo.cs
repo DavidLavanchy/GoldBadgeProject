@@ -127,7 +127,6 @@ namespace KomodoBadges_POCOs
 
             return false;
 
-
         }
 
         //get name of badge by badge ID

@@ -15,6 +15,7 @@ namespace KomodoBadges_Console
         string halfDashes = "----------";
         public void Run()
         {
+            SeedBadges();
             Menu();
         }
 
@@ -209,9 +210,59 @@ namespace KomodoBadges_Console
             Console.Clear();
         }
 
-        private void ViewBadges()
+        private void AddDoorsToABadge()
         {
             throw new NotImplementedException();
+        }
+
+        private void RemoveADoorFromABadge()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeleteABadge()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} Komodo Badges {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          Edit a Badge:\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n" +
+                "          1. Add Doors on a Badge\n" +
+                "          2. Delete Doors on a Badge\n" +
+                "          3. Delete A Badge\n" +
+                "          4. Exit To the Main Menu\n" +
+                "\n" +
+                $"{dashes}{dashes}");
+
+        }
+
+        private void ViewBadges()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} Komodo Badges {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          View All Badges:\n");
+
+            Dictionary<int, List<string>> allBadges = _badgeRepo.ReadBadges();
+
+            foreach(var kvp in allBadges)
+            {
+                Console.WriteLine($"Badge Number: {kvp.Key}");
+                string badgeName = _badgeRepo.GetBadgeName(kvp.Key);
+                Console.WriteLine($"Badge Name: {badgeName}");
+                Console.WriteLine("Doors:"); 
+                ViewEachDoorInBadge(kvp.Key);
+                Console.WriteLine("");
+            }
+            Console.WriteLine("");
+            Console.WriteLine("Press any key to return to the Main Menu");
+            Console.ReadKey();
+            Menu();
         }
 
         private void ViewEachDoorInBadge(int badgeID)
@@ -228,6 +279,21 @@ namespace KomodoBadges_Console
                     }
                 }
             }
+        }
+        
+        public void SeedBadges()
+        {
+            List<string> badge1 = new List<string> {"A5", "A6", "A7" };
+            List<string> badge2 = new List<string> { "B3", "B4" };
+            List<string> badge3 = new List<string> { "C1", "C8", "C-N" };
+
+            Badges badge11 = new Badges(5, badge1, "Developers");
+            Badges badge22 = new Badges(6, badge2, "Security");
+            Badges badge33 = new Badges(7, badge3, "Administration");
+
+            _badgeRepo.CreateABadge(badge11);
+            _badgeRepo.CreateABadge(badge22);
+            _badgeRepo.CreateABadge(badge33);
         }
     }
 }
