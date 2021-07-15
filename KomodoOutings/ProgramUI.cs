@@ -15,6 +15,7 @@ namespace KomodoOutings
         private readonly EventsRepo _eventsRepo = new EventsRepo();
         public void Run()
         {
+            SeedEvents();
             Menu();
         }
 
@@ -231,7 +232,97 @@ namespace KomodoOutings
 
         private void DisplayCalculations()
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} Komodo Outings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          Display Calculations:\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n" +
+                "          1. Combined Cost of All Outings\n" +
+                "          2. Combined Cost of Outings By Event Type\n" +
+                "          3. Return To Main Menu\n");
+            Console.WriteLine($"{dashes}{dashes}");
+
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    CombinedCost();
+                    break;
+                case "2":
+                    CombinedCostByEvent();
+                    break;
+                case "3":
+                    Menu();
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid menu option.");
+                    break;
+            }
+
+        }
+
+        private void CombinedCostByEvent()
+        {
             throw new NotImplementedException();
+        }
+
+        public void CombinedCost()
+        {
+            List<Events> allEvents = _eventsRepo.ReadListOfEvents();
+
+            decimal cost = default;
+
+            //this logic iterates through the list of events and adds the total cost of all events within 365 calendar days of the current date
+            foreach (var events in allEvents)
+            {
+                DateTime withinAYear = DateTime.Now.AddYears(-1);
+                TimeSpan isValidTime = events.DateOfEvent.Date - withinAYear;
+                if (isValidTime.TotalDays <= 365 && isValidTime.TotalDays >= 0)
+                {
+                    decimal costToBeAdded = events.CostPerEvent;
+                    cost += costToBeAdded;
+                }
+            }
+
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} Komodo Outings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          Cost of All Events:\n" +
+                $"{dashes}{dashes}\n");
+
+            Console.WriteLine($"Total Cost of Events Within the Past Year: {cost}");
+            Console.WriteLine("");
+            Console.WriteLine($"Press any key to return to the Display Calculations Menu");
+
+            Console.ReadKey();
+            DisplayCalculations();
+
+        }
+        public void SeedEvents()
+        {
+            Events newEvent1 = new Events(25, DateTime.Parse("09/23/2020"), Events.TypeOfEvent.Bowling, 10m, 1000.67m);
+            Events newEvent2 = new Events(50, DateTime.Parse("10/12/2020"), Events.TypeOfEvent.Concert, 25m, 2000.89m);
+            Events newEvent3 = new Events(113, DateTime.Parse("04/07/2021"), Events.TypeOfEvent.Golf, 45.67m, 4789.90m);
+            Events newEvent4 = new Events(500, DateTime.Parse("06/30/2021"), Events.TypeOfEvent.AmusementPark, 40.56m, 15693.98m);
+            Events newEvent5 = new Events(49, DateTime.Parse("12/13/2020"), Events.TypeOfEvent.Bowling, 10m, 3456.78m);
+            Events newEvent6 = new Events(87, DateTime.Parse("03/13/2020"), Events.TypeOfEvent.Bowling, 15.67m, 6446.78m);
+            Events newEvent7 = new Events(200, DateTime.Parse("07/03/2021"), Events.TypeOfEvent.Golf, 50.55m, 10987.78m);
+            Events newEvent8 = new Events(97, DateTime.Parse("07/13/2021"), Events.TypeOfEvent.Concert, 30m, 6750.09m);
+
+            _eventsRepo.AddAnEvent(newEvent1);
+            _eventsRepo.AddAnEvent(newEvent2);
+            _eventsRepo.AddAnEvent(newEvent3);
+            _eventsRepo.AddAnEvent(newEvent4);
+            _eventsRepo.AddAnEvent(newEvent5);
+            _eventsRepo.AddAnEvent(newEvent6);
+            _eventsRepo.AddAnEvent(newEvent7);
+            _eventsRepo.AddAnEvent(newEvent8);
         }
     }
 }
