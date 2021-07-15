@@ -21,6 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoBadges_POCOs", "Komod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoBadges_UnitTests", "KomodoBadges_UnitTests\KomodoBadges_UnitTests.csproj", "{8CDDA86C-9938-4735-8A5D-DB590D5D047E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoOutings", "KomodoOutings\KomodoOutings.csproj", "{18FD4692-545D-43FE-93FB-FFB0143F8C06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoOutings_POCOs", "KomodoOutings_POCOs\KomodoOutings_POCOs.csproj", "{1359805F-BC1A-419E-9B74-DBD313C947B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoOutings_UnitTests", "KomodoOutings_UnitTests\KomodoOutings_UnitTests.csproj", "{7A6257FC-3574-4DE9-A069-4E4BCD429CD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +69,18 @@ Global
 		{8CDDA86C-9938-4735-8A5D-DB590D5D047E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CDDA86C-9938-4735-8A5D-DB590D5D047E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CDDA86C-9938-4735-8A5D-DB590D5D047E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FD4692-545D-43FE-93FB-FFB0143F8C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FD4692-545D-43FE-93FB-FFB0143F8C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FD4692-545D-43FE-93FB-FFB0143F8C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FD4692-545D-43FE-93FB-FFB0143F8C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1359805F-BC1A-419E-9B74-DBD313C947B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1359805F-BC1A-419E-9B74-DBD313C947B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1359805F-BC1A-419E-9B74-DBD313C947B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1359805F-BC1A-419E-9B74-DBD313C947B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A6257FC-3574-4DE9-A069-4E4BCD429CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A6257FC-3574-4DE9-A069-4E4BCD429CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A6257FC-3574-4DE9-A069-4E4BCD429CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A6257FC-3574-4DE9-A069-4E4BCD429CD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
