@@ -67,15 +67,14 @@ namespace KomodoBadges_POCOs
 
             foreach (int badge in _badgeDictionary.Keys)
             {
-                if (badgeID != badge)
+                if (badgeID == badge)
                 {
-                    return false;
+                    _badgeDictionary[badgeID].Add(updatedDoorAccess);
+                    return true;
                 }
             }
-
-            _badgeDictionary[badgeID].Add(updatedDoorAccess);
             
-            return true;
+            return false;
         }
 
         //delete
@@ -83,14 +82,14 @@ namespace KomodoBadges_POCOs
         {
             foreach(int badge in _badgeDictionary.Keys)
             {
-                if(badgeID != badge)
+                if(badgeID == badge)
                 {
-                    return false;
+                    _badgeDictionary[badgeID].Remove(doorToBeDeleted);
+                    return true;
                 }
             }
 
-            _badgeDictionary[badgeID].Remove(doorToBeDeleted);
-            return true; 
+            return false;
         }
 
         public bool DeleteAllDoorsOnExistingBadge(int badgeID)
