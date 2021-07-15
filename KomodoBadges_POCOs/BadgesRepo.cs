@@ -111,6 +111,25 @@ namespace KomodoBadges_POCOs
 
         }
 
+        //Delete A Badge
+        public bool DeleteAbadge(int badgeID)
+        {
+            foreach(int badgeNumber in _badgeDictionary.Keys)
+            {
+                if (badgeNumber == badgeID)
+                {
+                    List<string> doorsOnBadge = _badgeDictionary[badgeID];
+                    doorsOnBadge.Clear();
+                    _badgeDictionary.Remove(badgeNumber);
+                    return true;
+                }
+            }
+
+            return false;
+
+
+        }
+
         //get name of badge by badge ID
         public string GetBadgeName (int badgeID)
         {

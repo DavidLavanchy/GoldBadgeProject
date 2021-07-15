@@ -47,7 +47,7 @@ namespace KomodoBadges_Console
                         AddABadge();
                         break;
                     case "2":
-                        DeleteABadge();
+                        EditABadge();
                         break;
                     case "3":
                         ViewBadges();
@@ -167,9 +167,46 @@ namespace KomodoBadges_Console
 
         }
 
-        private void DeleteABadge()
+        private void EditABadge()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} Komodo Badges {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          Edit a Badge:\n" +
+                $"{dashes}{dashes}\n" +
+                $"\n" +
+                "          1. Add Doors on a Badge\n" +
+                "          2. Delete Doors on a Badge\n" +
+                "          3. Delete A Badge\n" +
+                "          4. Exit To the Main Menu\n" +
+                "\n" +
+                $"{dashes}{dashes}");
+
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    AddDoorsToABadge();
+                    break;
+                case "2":
+                    RemoveADoorFromABadge();
+                    break;
+                case "3":
+                    DeleteABadge();
+                    break;
+                case "4":
+                    Console.WriteLine("Goodbye!");
+                    Menu();
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid menu option.");
+                    break;
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         private void ViewBadges()

@@ -131,6 +131,16 @@ namespace KomodoBadges_UnitTests
             Assert.AreEqual("Developers", badgeName);
         }
 
+        [TestMethod]
+        public void DeleteADoor_ShouldReturnTrue()
+        {
+            Badges badge = Arrange();
+            _badgeRepo.CreateABadge(badge);
+
+            bool isTrue = _badgeRepo.DeleteAbadge(5);
+
+            Assert.IsTrue(isTrue);
+        }
 
 
     }
