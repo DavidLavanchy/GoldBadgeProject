@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KomodoGreetings_Console
 {
-    class Class1
+    class ProgramUI
     {
     }
 }
