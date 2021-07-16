@@ -4,4 +4,4 @@
 
 ##### Each of these five applications utilize the CRUD methodology (create, Read, Update, and Delete) to store and manipulate data. Each application uses these methods in separate and unique ways to accomplish a task. Some of these applications utilize some of these methods and others utilize all of these methods, it just depended on the needs of the challenges. 
 
-##### Each application is organized within three projects: ## Console Application #### ,  ##Class Library ##### and a ## Unit Test Project
+##### Each application is organized within three projects: __Console Application__, __Class Library__ and a __Unit Test Project__
