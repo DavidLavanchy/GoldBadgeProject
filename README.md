@@ -37,3 +37,5 @@
 ## Challenge 5 - Komodo Greetings
 
 #### The Komodo Greetings application is an enterprise application designed to help companies deal with their email subscription list. Each customer of the company is given a customer type of past, current, or potential to gauge the type of email that should be delivered to them. The application also holds the customer's first and last name and a special email message to be delivered to them. The manager of this application can create new customers and tailor specific messages to that customer. You are also able to view each customer in the system as well as update certain characteristics of each customer. In case a potential customer becomes a current customer after purchasing a product, you can then tailor new emails to that customer based on their updated customer status. You can also remove customers from the system.
+
+### Please feel free to clone and run this repository and reach out to me if you see any room for improvement or areas where we can collaborate together! 
