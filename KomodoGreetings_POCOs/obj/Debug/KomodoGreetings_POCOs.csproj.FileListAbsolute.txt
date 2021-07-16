@@ -1,0 +1,6 @@
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoGreetings_POCOs\bin\Debug\KomodoGreetings_POCOs.dll
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoGreetings_POCOs\bin\Debug\KomodoGreetings_POCOs.pdb
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoGreetings_POCOs\obj\Debug\KomodoGreetings_POCOs.csproj.AssemblyReference.cache
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoGreetings_POCOs\obj\Debug\KomodoGreetings_POCOs.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoGreetings_POCOs\obj\Debug\KomodoGreetings_POCOs.dll
+C:\ElevenFiftyProjects\GoldBadgeProject\GoldBadgeProject\KomodoGreetings_POCOs\obj\Debug\KomodoGreetings_POCOs.pdb

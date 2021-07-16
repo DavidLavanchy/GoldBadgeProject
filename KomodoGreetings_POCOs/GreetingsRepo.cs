@@ -18,7 +18,7 @@ namespace KomodoGreetings_POCOs
                 return false;
             }
             _greetingsList.Add(newGreeting);
-            return false;
+            return true;
         }
 
         //read
