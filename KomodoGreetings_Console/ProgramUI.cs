@@ -64,6 +64,7 @@ namespace KomodoGreetings_Console
                         break;
                     case "5":
                         Console.WriteLine("Goodbye! You will now exit this application");
+                        Console.ReadKey();
                         isTrue = false;
                         break;
                     default:
@@ -85,15 +86,16 @@ namespace KomodoGreetings_Console
             Console.WriteLine("                 All Greetings:\n" +
                 $" {dashes}{dashes}{dashes}\n");
 
-            Console.WriteLine("First Name:       Last Name:       Customer Type:       Email Message:");
+            Console.WriteLine("");
 
             foreach(var greeting in greetingsList)
             {
-                Console.WriteLine($"{greeting.FirstName}        {greeting.LastName}     {greeting.TypeOfCustomer}       {greeting.Email}");
+                Console.WriteLine($"First Name:{greeting.FirstName}");
+                Console.WriteLine($"Last Name: {greeting.LastName}");
+                Console.WriteLine($"Customer Type: {greeting.TypeOfCustomer}");
+                Console.WriteLine($"Email Message: {greeting.Email}\n");
                 Console.WriteLine("");
             }
-
-            Console.WriteLine("");
             Console.WriteLine("Press any key to return to the Main Menu");
             Console.ReadKey();
             Menu();
@@ -102,7 +104,125 @@ namespace KomodoGreetings_Console
 
         private void CreateACustomer()
         {
-            throw new NotImplementedException();
+            Greetings newGreeting = new Greetings();
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Create A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the Customer's First Name:");
+
+            string firstName = Console.ReadLine();
+            newGreeting.FirstName = firstName;
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Create A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"Customer's First Name: {newGreeting.FirstName}");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the Customer's Last Name:");
+
+            string lastName = Console.ReadLine();
+            newGreeting.LastName = lastName ;
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Create A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"Customer's First Name: {newGreeting.FirstName}");
+            Console.WriteLine($"Customer's Last Name: {newGreeting.LastName}");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the corresponding number for the customer's type:\n" +
+                "\n" +
+                "1: Potential\n" +
+                "2: Current\n" +
+                "3: Past\n");
+
+            string input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    newGreeting.TypeOfCustomer = Greetings.TypeOfGreeting.Potential;
+                    break;
+                case "2":
+                    newGreeting.TypeOfCustomer = Greetings.TypeOfGreeting.Current;
+                    break;
+                case "3":
+                    newGreeting.TypeOfCustomer = Greetings.TypeOfGreeting.Past;
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid customer type...");
+                    break;
+            }
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Create A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"Customer's First Name: {newGreeting.FirstName}");
+            Console.WriteLine($"Customer's Last Name: {newGreeting.LastName}");
+            Console.WriteLine($"Customer Type: {newGreeting.TypeOfCustomer}");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the Email Message:");
+
+            string emailMessage = Console.ReadLine();
+            newGreeting.Email = emailMessage;
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Create A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"Customer's First Name: {newGreeting.FirstName}");
+            Console.WriteLine($"Customer's Last Name: {newGreeting.LastName}");
+            Console.WriteLine($"Customer Type: {newGreeting.TypeOfCustomer}");
+            Console.WriteLine($"Email Message: {newGreeting.Email}");
+
+            Console.WriteLine("");
+            Console.WriteLine("Are you sure you would like to add this customer? (y/n)");
+            string input1 = Console.ReadLine().ToLower();
+
+            switch (input1)
+            {
+                case "y":
+                    Console.WriteLine("Customer and Message successfully added! You will now be returned to the Main Menu...");
+                    _repo.CreateANewGreeting(newGreeting);
+                    Console.ReadKey();
+                    break;
+                case "n":
+                    Console.WriteLine("Customer and Message discarded... You will now be returned to the Main Menu...");
+                    Console.ReadKey();
+                    break;
+                default:
+                    Console.WriteLine("Please enter either 'y' or 'n'");
+                    break;
+            }
+            Menu();
         }
 
         private void UpdateACustomer()
