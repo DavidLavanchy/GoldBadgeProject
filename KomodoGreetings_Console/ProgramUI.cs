@@ -305,7 +305,80 @@ namespace KomodoGreetings_Console
 
         private void DeleteACustomer()
         {
-            throw new NotImplementedException();
+            Greetings newGreeting = new Greetings();
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Delete A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the Customer's Last Name you'd like to Delete or if you would like to view a \n" +
+                "list of Customers and Greetings enter 'view' and then\n " +
+                "enter the Last Name (case sensitive):");
+
+            string userInput = Console.ReadLine();
+
+            if (userInput == "view")
+            {
+                foreach (var greeting in _repo.ReadListOfGreetings())
+                {
+                    Console.WriteLine($"First Name:{greeting.FirstName}");
+                    Console.WriteLine($"Last Name: {greeting.LastName}");
+                    Console.WriteLine($"Customer Type: {greeting.TypeOfCustomer}");
+                    Console.WriteLine($"Email Message: {greeting.Email}\n");
+                    Console.WriteLine("");
+
+                }
+                Console.WriteLine("Enter the Last Name of the customer you'd like to update (case sensitive):");
+                string secondInput = Console.ReadLine();
+                newGreeting.LastName = secondInput;
+
+            }
+            else
+            {
+                newGreeting.LastName = userInput;
+            }
+
+            Greetings foundGreeting = _repo.FindGreetingByLast(newGreeting.LastName);
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Delete A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"First Name: {foundGreeting.FirstName}");
+            Console.WriteLine($"Last Name: {foundGreeting.LastName}");
+            Console.WriteLine($"Type of Customer: {foundGreeting.TypeOfCustomer}");
+            Console.WriteLine($"Email Message: {foundGreeting.Email}");
+            Console.WriteLine("");
+            Console.WriteLine("Are you sure you would like to delete this greeting? (y/n) ");
+
+            string input1 = Console.ReadLine().ToLower();
+
+            switch (input1)
+            {
+                case "y":
+                    Console.WriteLine("Customer/Greeting successfully deleted...You will now be returned to the Main Menu...");
+                    Console.ReadKey();
+                    _repo.DeleteAGreeting(foundGreeting);
+                    Menu();
+                    break;
+                case "n":
+                    Console.WriteLine("You elected not to delete this Customer/Greeting...You will now be returned to the Main Menu...");
+                    Console.ReadKey();
+                    Menu();
+                    break;
+                default:
+                    Console.WriteLine("Please enter either 'y' or 'n'");
+                    break;
+            }
         }
 
         public void UpdateACustomerMethod(Greetings greeting)
