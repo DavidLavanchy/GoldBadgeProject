@@ -96,7 +96,7 @@ namespace KomodoGreetings_Console
                 Console.WriteLine($"Email Message: {greeting.Email}\n");
                 Console.WriteLine("");
             }
-            Console.WriteLine("Press any key to return to the Main Menu");
+            Console.WriteLine("Press any key to return to continue...");
             Console.ReadKey();
             Menu();
 
@@ -227,12 +227,247 @@ namespace KomodoGreetings_Console
 
         private void UpdateACustomer()
         {
-            throw new NotImplementedException();
+            Greetings newGreeting = new Greetings();
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Update A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+
+            Console.WriteLine("");
+            Console.WriteLine("Enter the Customer's Last Name or if you would like to view a \n" +
+                "list of Customers and Greetings enter 'view' and then\n " +
+                "enter the Last Name (case sensitive):");
+
+            string userInput = Console.ReadLine();
+
+            if(userInput == "view")
+            {
+                foreach(var greeting in _repo.ReadListOfGreetings())
+                {
+                    Console.WriteLine($"First Name:{greeting.FirstName}");
+                    Console.WriteLine($"Last Name: {greeting.LastName}");
+                    Console.WriteLine($"Customer Type: {greeting.TypeOfCustomer}");
+                    Console.WriteLine($"Email Message: {greeting.Email}\n");
+                    Console.WriteLine("");
+
+                }
+                Console.WriteLine("Enter the Last Name of the customer you'd like to update (case sensitive):");
+                string secondInput = Console.ReadLine();
+                newGreeting.LastName = secondInput;
+
+            }
+            else
+            {
+                newGreeting.LastName = userInput;
+            }
+
+            Greetings foundGreeting = _repo.FindGreetingByLast(newGreeting.LastName);
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Update A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"First Name: {foundGreeting.FirstName}");
+            Console.WriteLine($"Last Name: {foundGreeting.LastName}");
+            Console.WriteLine($"Type of Customer: {foundGreeting.TypeOfCustomer}");
+            Console.WriteLine($"Email Message: {foundGreeting.Email}");
+            Console.WriteLine("");
+            Console.WriteLine("Are you sure you would like to update this? (y/n) ");
+
+            string input1 = Console.ReadLine().ToLower();
+
+            switch (input1)
+            {
+                case "y":
+                    Console.WriteLine("Press any key to continue updating this Customer/Greeting");
+                    Console.ReadKey();
+                    UpdateACustomerMethod(foundGreeting);
+                    break;
+                case "n":
+                    Console.WriteLine("You elected not to update this Customer/Greeting...You will now be returned to the Main Menu...");
+                    Console.ReadKey();
+                    Menu();
+                    break;
+                default:
+                    Console.WriteLine("Please enter either 'y' or 'n'");
+                    break;
+            }
+
         }
 
         private void DeleteACustomer()
         {
             throw new NotImplementedException();
+        }
+
+        public void UpdateACustomerMethod(Greetings greeting)
+        {
+            Greetings newGreeting = new Greetings();
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Update A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"First Name: {greeting.FirstName}");
+            Console.WriteLine($"Last Name: {greeting.LastName}");
+            Console.WriteLine($"Type of Customer: {greeting.TypeOfCustomer}");
+            Console.WriteLine($"Email Message: {greeting.Email}");
+            Console.WriteLine("");
+            Console.WriteLine("Enter a new First Name, or enter 'n' if you would like to keep the same customer name");
+
+            string userInput = Console.ReadLine();
+
+            if(userInput == "n")
+            {
+                newGreeting.FirstName = greeting.FirstName;
+            }
+            else
+            {
+                newGreeting.FirstName = userInput;
+            }
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Update A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"First Name: {newGreeting.FirstName}");
+            Console.WriteLine($"Last Name: {greeting.LastName}");
+            Console.WriteLine($"Type of Customer: {greeting.TypeOfCustomer}");
+            Console.WriteLine($"Email Message: {greeting.Email}");
+            Console.WriteLine("");
+            Console.WriteLine("Enter a new Last Name, or enter 'n' if you would like to keep the same customer name");
+
+            string userInputLast = Console.ReadLine();
+
+            if (userInputLast == "n")
+            {
+                newGreeting.LastName = greeting.LastName;
+            }
+            else
+            {
+                newGreeting.LastName = userInputLast;
+            }
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Update A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"First Name: {newGreeting.FirstName}");
+            Console.WriteLine($"Last Name: {newGreeting.LastName}");
+            Console.WriteLine($"Type of Customer: {greeting.TypeOfCustomer}");
+            Console.WriteLine($"Email Message: {greeting.Email}");
+            Console.WriteLine("");
+            Console.WriteLine("Enter the corresponding number for the Customer Type, or enter 'n' if you would like to keep the same customer name");
+            Console.WriteLine("");
+            Console.WriteLine("1: Potential\n" +
+                "2: Current\n" +
+                "3: Past\n");
+
+            string typeInput = Console.ReadLine();
+
+            if(typeInput == "n")
+            {
+                newGreeting.TypeOfCustomer = greeting.TypeOfCustomer;
+            }
+            else
+            {
+                switch (typeInput)
+                {
+                    case "1":
+                        newGreeting.TypeOfCustomer = Greetings.TypeOfGreeting.Potential;
+                        break;
+                    case "2":
+                        newGreeting.TypeOfCustomer = Greetings.TypeOfGreeting.Current;
+                        break;
+                    case "3":
+                        newGreeting.TypeOfCustomer = Greetings.TypeOfGreeting.Past;
+                        break;
+                    default:
+                        Console.WriteLine("Please enter a valid customer type...");
+                        break;
+                }
+            }
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Update A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"First Name: {newGreeting.FirstName}");
+            Console.WriteLine($"Last Name: {newGreeting.LastName}");
+            Console.WriteLine($"Type of Customer: {newGreeting.TypeOfCustomer}");
+            Console.WriteLine($"Email Message: {greeting.Email}");
+            Console.WriteLine("");
+            Console.WriteLine("Enter a new Email Message, or enter 'n' if you would like to keep the same customer name");
+
+            string emailInput = Console.ReadLine();
+
+            if(emailInput == "n")
+            {
+                newGreeting.Email = greeting.Email;
+            }
+            else
+            {
+                newGreeting.Email = emailInput;
+            }
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"        {halfDashes} Komodo Greetings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("                Update A Greeting:\n" +
+                $" {dashes}{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"First Name: {newGreeting.FirstName}");
+            Console.WriteLine($"Last Name: {newGreeting.LastName}");
+            Console.WriteLine($"Type of Customer: {newGreeting.TypeOfCustomer}");
+            Console.WriteLine($"Email Message: {newGreeting.Email}");
+            Console.WriteLine("");
+            Console.WriteLine("Are you sure you'd like to update this Customer/Message? (y/n)");
+            
+            string input1 = Console.ReadLine().ToLower();
+
+            switch (input1)
+            {
+                case "y":
+                    Console.WriteLine("Customer and Message successfully updated! You will now be returned to the Main Menu...");
+                    _repo.UpdateGreeting(greeting, newGreeting);
+                    Console.ReadKey();
+                    break;
+                case "n":
+                    Console.WriteLine("Customer and Message update discarded... You will now be returned to the Main Menu...");
+                    Console.ReadKey();
+                    break;
+                default:
+                    Console.WriteLine("Please enter either 'y' or 'n'");
+                    break;
+            }
+            Menu();
+
         }
         public void SeedGreetings()
         {

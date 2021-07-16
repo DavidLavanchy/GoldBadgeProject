@@ -30,7 +30,7 @@ namespace KomodoGreetings_POCOs
         //update
         public bool UpdateGreeting(Greetings greeting, Greetings newGreeting)
         {
-            Greetings greetingToBeUpdated = FindGreetingByFirstAndLast(greeting.FirstName, greeting.LastName);
+            Greetings greetingToBeUpdated = FindGreetingByLast(greeting.LastName);
 
             if(greetingToBeUpdated == null)
             {
@@ -44,7 +44,7 @@ namespace KomodoGreetings_POCOs
 
         public bool DeleteAGreeting(Greetings greeting)
         {
-            Greetings greetingToBeUpdated = FindGreetingByFirstAndLast(greeting.FirstName, greeting.LastName);
+            Greetings greetingToBeUpdated = FindGreetingByLast(greeting.LastName);
 
             if (greetingToBeUpdated == null)
             {
@@ -55,13 +55,13 @@ namespace KomodoGreetings_POCOs
         }
 
         //helper method
-        public Greetings FindGreetingByFirstAndLast(string firstName, string lastName)
+        public Greetings FindGreetingByLast(string lastName)
         {
             List<Greetings> _listOfGreetings = ReadListOfGreetings();
 
             foreach(var greeting in _listOfGreetings)
             {
-                if((greeting.FirstName == firstName) && (greeting.LastName == lastName))
+                if((greeting.LastName == lastName))
                 {
                     return greeting;
                 }
