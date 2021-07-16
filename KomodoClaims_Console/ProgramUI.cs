@@ -65,7 +65,7 @@ namespace KomodoClaims_Console
         }
 
         private void SeeAllClaims()
-        { 
+        {
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -76,14 +76,14 @@ namespace KomodoClaims_Console
                 $"{dashes}{dashes}\n" +
                 $"\n");
 
-            foreach(var claim in _claimRepo.ViewAllClaims())
+            foreach (var claim in _claimRepo.ViewAllClaims())
             {
                 Console.WriteLine($"Claim ID: {claim.ClaimID}\n" +
                         $"Claim Type: {claim.ClaimType}\n" +
                         $"Claim Description: {claim.ClaimDescription}\n" +
                         $"Claim Amount: {claim.ClaimAmount}\n" +
-                        $"Incident Date: {claim.IncidentDate}\n" +
-                        $"Claim Date: {claim.ClaimDate}\n" +
+                        $"Incident Date: {claim.IncidentDate.ToString("d")}\n" +
+                        $"Claim Date: {claim.ClaimDate.ToString("d")}\n" +
                         $"Valid: {claim.IsValid}\n ");
                 Console.WriteLine("");
                 Console.WriteLine($"{dashes}{dashes}");
@@ -99,8 +99,8 @@ namespace KomodoClaims_Console
         {
             bool isTrue = true;
 
-                while (isTrue)
-                {
+            while (isTrue)
+            {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"    {halfDashes} *Komodo Claims* {halfDashes}");
@@ -110,38 +110,45 @@ namespace KomodoClaims_Console
                     $"{dashes}{dashes}\n" +
                     $"\n");
 
-                Claim claim = _claimRepo.ViewAllClaims().Peek();
-                  
-                        Console.WriteLine($"Claim ID: {claim.ClaimID}\n" +
-                            $"Claim Type: {claim.ClaimType}\n" +
-                            $"Claim Description: {claim.ClaimDescription}\n" +
-                            $"Claim Amount: {claim.ClaimAmount}\n" +
-                            $"Incident Date: {claim.IncidentDate}\n" +
-                            $"Claim Date: {claim.ClaimDate}\n" +
-                            $"Valid: {claim.IsValid}\n ");
-
-                        Console.WriteLine("Would you like to deal with this claim? (y/n)");
-                        string input = Console.ReadLine().ToLower();
-
-                        switch (input)
-                        {
-                            case "y":          
-                                _claimRepo.ViewAllClaims().Dequeue();
-                                break;
-                            case "n":
-                                Console.WriteLine("You will now be returned to the main menu.");
-                                Console.ReadKey();
-                                Console.Clear();
-                                Menu();
-                                break;
-                            default:
-                                Console.WriteLine("Please enter a valid menu option:");
-                                Console.WriteLine("");
-                                Console.WriteLine("Press 'y' if you would like to deal with the next claim.\n" +
-                                    "Press 'n' if you would like to return to the main menu");
-                                break;
-                        }
+                if (_claimRepo.ViewAllClaims().Count == 0)
+                {
+                    Console.WriteLine("There are no claims to deal with... press any key to return to the main menu...");
+                    Console.ReadKey();
+                    Menu();
                 }
+
+                Claim claim = _claimRepo.ViewAllClaims().Peek();
+
+                Console.WriteLine($"Claim ID: {claim.ClaimID}\n" +
+                    $"Claim Type: {claim.ClaimType}\n" +
+                    $"Claim Description: {claim.ClaimDescription}\n" +
+                    $"Claim Amount: {claim.ClaimAmount}\n" +
+                    $"Incident Date: {claim.IncidentDate.ToString("d")}\n" +
+                    $"Claim Date: {claim.ClaimDate.ToString("d")}\n" +
+                    $"Valid: {claim.IsValid}\n ");
+
+                Console.WriteLine("Would you like to deal with this claim? (y/n)");
+                string input = Console.ReadLine().ToLower();
+
+                switch (input)
+                {
+                    case "y":
+                        _claimRepo.ViewAllClaims().Dequeue();
+                        break;
+                    case "n":
+                        Console.WriteLine("You will now be returned to the main menu.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Menu();
+                        break;
+                    default:
+                        Console.WriteLine("Please enter a valid menu option:");
+                        Console.WriteLine("");
+                        Console.WriteLine("Press 'y' if you would like to deal with the next claim.\n" +
+                            "Press 'n' if you would like to return to the main menu");
+                        break;
+                }
+            }
         }
 
         private void EnterANewClaim()
@@ -276,7 +283,7 @@ namespace KomodoClaims_Console
                 $"Claim Type: {newClaim.ClaimType}\n" +
                 $"Claim Description: {newClaim.ClaimDescription}\n" +
                 $"Claim Amount: {newClaim.ClaimAmount}\n" +
-                $"Incident Date: {newClaim.IncidentDate}\n" +
+                $"Incident Date: {newClaim.IncidentDate.ToString("d")}\n" +
                 $"{dashes}{dashes}\n" +
                 $"\n");
 
@@ -297,8 +304,8 @@ namespace KomodoClaims_Console
                 $"Claim Type: {newClaim.ClaimType}\n" +
                 $"Claim Description: {newClaim.ClaimDescription}\n" +
                 $"Claim Amount: {newClaim.ClaimAmount}\n" +
-                $"Incident Date: {newClaim.IncidentDate}\n" +
-                $"Claim Date: {newClaim.ClaimDate}\n" +
+                $"Incident Date: {newClaim.IncidentDate.ToString("d")}\n" +
+                $"Claim Date: {newClaim.ClaimDate.ToString("d")}\n" +
                 $"Valid: {newClaim.IsValid}\n" +
                 $"{dashes}{dashes}\n" +
                 $"\n");

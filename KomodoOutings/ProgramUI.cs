@@ -339,7 +339,7 @@ namespace KomodoOutings
             Console.WriteLine("");
             Console.WriteLine($"{dashes}{dashes}");
 
-            Console.WriteLine("Press any ket to continue to the Display Calculations Menu");
+            Console.WriteLine("Press any key to continue to the Display Calculations Menu");
         }
 
         public void CombinedCost()
