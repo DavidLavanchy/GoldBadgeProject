@@ -266,7 +266,80 @@ namespace KomodoOutings
 
         private void CombinedCostByEvent()
         {
-            throw new NotImplementedException();
+            Events newEvent = new Events();
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} Komodo Outings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          Cost of Events By Type:\n" +
+                $"{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine("Enter the Type of Event You Would Like to View");
+            Console.WriteLine("1: Golf\n" +
+                "2: Bowling\n" +
+                "3: Amusement Park\n" +
+                "4: Concert\n");
+            Console.WriteLine("");
+            Console.WriteLine($"{dashes}{dashes}");
+
+            string eventTypeInput = Console.ReadLine();
+
+            switch (eventTypeInput)
+            {
+                case "1":
+                    newEvent.Event = Events.TypeOfEvent.Golf;
+                    DisplayCostByEvent(newEvent);
+                    break;
+                case "2":
+                    newEvent.Event = Events.TypeOfEvent.Bowling;
+                    DisplayCostByEvent(newEvent);
+                    break;
+                case "3":
+                    newEvent.Event = Events.TypeOfEvent.AmusementPark;
+                    DisplayCostByEvent(newEvent);
+                    break;
+                case "4":
+                    newEvent.Event = Events.TypeOfEvent.Concert;
+                    DisplayCostByEvent(newEvent);
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid event type option...");
+                    break;
+            }
+            Console.ReadKey();
+            DisplayCalculations();
+        }
+
+        private void DisplayCostByEvent(Events eventType)
+        {
+            List<Events> allEvents = _eventsRepo.ReadListOfEvents();
+
+            decimal cost = default;
+
+            foreach (var events in allEvents)
+            {
+                if(events.Event == eventType.Event)
+                {
+                    decimal costToBeAdded = events.CostPerEvent;
+                    cost += costToBeAdded;
+                }
+            }
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    {halfDashes} Komodo Outings {halfDashes}");
+            Console.ResetColor();
+            Console.WriteLine("");
+            Console.WriteLine("          Cost of Events By Type:\n" +
+                $"{dashes}{dashes}\n");
+            Console.WriteLine("");
+            Console.WriteLine($"The total cost for {eventType.Event} outings is {cost.ToString()}");
+            Console.WriteLine("");
+            Console.WriteLine($"{dashes}{dashes}");
+
+            Console.WriteLine("Press any ket to continue to the Display Calculations Menu");
         }
 
         public void CombinedCost()
